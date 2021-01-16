@@ -1,3 +1,11 @@
+<?php
+if (!session_start()){
+    session_start();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +26,11 @@
     <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
 
     <link href="../public/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+        <!--  Toastr  -->
+    <link href="../public/css/toastr.css" rel="stylesheet">
+
+
 
 </head>
 

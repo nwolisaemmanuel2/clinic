@@ -14,6 +14,9 @@ $h = $_POST['ins'];
 $sql = "INSERT INTO patient (firstName,lastName,tel,age,sex,amount,address,ins) VALUES (:a,:b,:c,:d,:e,:f,:g,:h)";
 $q = $db->prepare($sql);
 $q->execute(array(':a' => $a, ':b' => $b, ':c' => $c, ':d' => $d, ':e' => $e, ':f' => $f, ':g' => $g, ':h' => $h));
+
+$_SESSION['success_msg'] = "Record Saved Successfully";
+
 header("location: index.php");
 
 
