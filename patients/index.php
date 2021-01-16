@@ -58,7 +58,9 @@
                                 <span class="fas fa-edit"></span>
                             </a>
                         </td>
-                        <td><a class="btn btn-danger btn-sm" href=""><span class="fas fa-pencil-alt"></span></a></td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" href="" data-toggle="modal" data-target="#del<?php echo $row['id']; ?>"><span class="fas fa-pencil-alt"></span></a>
+                        </td>
                     </tr>
 
 
@@ -207,7 +209,34 @@
 
 
 
+                        <!--   Modal for Deleting Users-->
+                        <div class="modal fade" id="del<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <br>
+                            <div class="modal-dialog" role="document">
+                                <br><br>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-center text-danger" id="exampleModalLabel"><i class="fas fa-trash-alt"></i><span class="text-danger"> Delete This Record</span></h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
 
+                                    <div class="modal-body">
+                                        <p><b>Are you sure you want to delete this record?</b></p>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <form action="delete_patient.php" method="post" class="myform">
+                                          <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                        <button type="submit" class="btn btn-sm btn-danger mybtn"><i class="fas fa-trash-alt"></i> Delete</button>
+                                        <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> <!-- Delete Modal -->
 
 
 
