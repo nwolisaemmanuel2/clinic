@@ -7,7 +7,6 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Patients</h1>
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -21,43 +20,45 @@
                 <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
+                        <th>OPD</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>INS Number</th>
                         <th>Age</th>
                         <th>Phone</th>
                         <th>Sex</th>
-                        <th>Amount</th>
                         <th>Address</th>
+                        <th>Amount</th>
                         <th></th>
                         <th></th>
                     </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Age</th>
-                        <th>Phone</th>
-                        <th>Sex</th>
-                        <th>Amount</th>
-                        <th>Address</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </tfoot>
                     <tbody>
+
+                    <?php
+                    include('function.php');
+                    include('../dbconnect.php');
+                    $result = $db->prepare("SELECT * FROM patient ORDER BY id DESC");
+                    $result->execute();
+                    for($i=0; $row = $result->fetch(); $i++){
+                    ?>
+
                     <tr>
-                        <td>Tiger</td>
-                        <td>Woods</td>
-                        <td>28</td>
-                        <td>03323342423</td>
-                        <td>Male</td>
-                        <td>40</td>
-                        <td>Adum Kumasi</td>
+                        <td>MC<?php echo $row['id']; ?></td>
+                        <td><?php echo $row['firstName']; ?></td>
+                        <td><?php echo $row['lastName']; ?></td>
+                        <td><?php echo $row['ins']; ?></td>
+                        <td><?php echo $row['age']; ?></td>
+                        <td><?php echo $row['tel']; ?></td>
+                        <td><?php echo $row['sex']; ?></td>
+                        <td><?php echo $row['address']; ?></td>
+                        <td><?php $amount=$row['amount']; echo formatMoney($amount, true); ?></td>
                         <td><a class="btn btn-primary btn-sm" href=""><span class="fas fa-edit"></span></a></td>
                         <td><a class="btn btn-danger btn-sm" href=""><span class="fas fa-pencil-alt"></span></a></td>
                     </tr>
-
+                        <?php
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
@@ -86,7 +87,7 @@
 
 
                 <!-- ./Form -->
-                <form action="" method="post" class="myform">
+                <form action="add_patient.php" method="post" class="myform">
 
                     <div class="modal-body">
 
@@ -111,6 +112,17 @@
                                         </div>
                                     </div>
                                     <input class="form-control" minlength="3" autocomplete="off" required="required" name="lastName" type="text" value="" id="lastName">
+                                </div>
+                            </div>
+                            <div class="form-group  col-md-4">
+                                <label for="tel">INS Number</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <span class="fas fa-phone"></span>
+                                        </div>
+                                    </div>
+                                    <input class="form-control" name="ins" autocomplete="off" type="number" value="" id="ins">
                                 </div>
                             </div>
                             <div class="form-group  col-md-4">
