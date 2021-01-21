@@ -63,6 +63,40 @@
 <script src="../public/js/demo/chart-area-demo.js"></script>
 <script src="../public/js/demo/chart-pie-demo.js"></script>
 
+<!--Toastr-->
+<script src="../public/js/toastr.js"></script>
+
+
+<script>
+    window.onload = function () {
+
+
+        const forms = document.querySelectorAll(".myform");
+        const btns = document.querySelectorAll(".mybtn");
+
+        for (const form of forms) {
+            form.onsubmit = function () {
+                for (const btn of btns) {
+                    btn.disabled = true;
+                    btn.value = "please Wait...";
+                }
+            }
+        }
+
+        <?php
+            if (!empty($_SESSION['success_msg'])){ ?>
+
+        toastr.success('<?php echo $_SESSION['success_msg']; ?>'); //Success messages
+
+           <?php
+                 unset($_SESSION['success_msg']);
+            } ?>
+
+
+
+
+    }
+</script>
 </body>
 
 </html>
